@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firemap</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluez le nécessaire pour faire marcher la bibliothèque Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <!-- À inclure APRÈS la CSS ! -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+
+
+</head>
+
+<body>
+
+    <h1>Carte JS Feu</h1>
+
+
+    <div id='map' style='width: 1200px; height: 600px;'></div>
+
+
+    <form method="get">
+        <label for="date">Choisissez une date entre le 21 juin 2022 et le 23 septembre 2022</label>
+        <input type="date" id="date" name="date" min="2022-06-21" max="2022-09-23">
+        <input type="button" id="submit" value="Envoyer">
+    </form>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFsaWVkcCIsImEiOiJjbDh4NjBqOWkwMXE3M3dwY292bDNzcDVoIn0.hxFDPbpzjCLJ3ZpIji1SJQ';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/nathaliedp/cl8x67nql001v15qbi2xa8vhv',
+            center: [1.178, 46.826], // starting position [lng, lat],
+            zoom: 5 // starting zoom
+        });
+
+        document.getElementById('submit').addEventListener('click', function() {
+
+            document.querySelectorAll('.marker').forEach(el => el.parentNode.removeChild(el));
+            var date = document.getElementById('date').value;
+            console.log(date);
+
+            fetch('fire_nrt_M-C61_300460.json').then(function(response) {
+                response.json().then(function(data) {
+
+                    function feu(data) {
+                        data.forEach(function(f) {
+                            if (f.acq_date == date) {
+                                var el = document.createElement('div');
+                                el.className = 'marker';
+                                el.style.backgroundImage = "url('fire.png')";
+                                el.style.width = '40px';
+                                el.style.height = '30px';
+                                new mapboxgl.Marker(el)
+                                    .setLngLat([f.longitude, f.latitude])
+                                    .addTo(map);
+                            } else {
+                                console.log("Pas de feu à cette date")
+
+                            }
+                        });
+                    }
+                    feu(data)
+                })
+            })
+        })
+    </script>
+
+</body>
+
+</html>
