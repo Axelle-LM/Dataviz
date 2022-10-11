@@ -46,9 +46,29 @@
             zoom: 5 // starting zoom
         });
 
-        // setInterval(function(datechangement) {
-        //     document.getElementById("suivante").click();
-        // }, 2000);
+
+        let datechange = function datechangement() {
+            document.getElementById("suivante").click();
+        }
+
+        let intervaldate = setInterval(datechange, 2000);
+
+        document.getElementById("Pause").addEventListener("click", function() {
+            clearInterval(intervaldate);
+            intervaldate = null;
+            console.log("Pause test");
+        });
+
+        document.getElementById("Play").addEventListener("click", function() {
+            if (intervaldate == null) {
+                intervaldate = setInterval(datechange, 2000);
+                console.log("Play test");
+            } else {
+                console.log("Déjà actif");
+            }
+
+
+        });
 
         document.getElementById("suivante").addEventListener("click", function() {
             let date = document.getElementById("date").value;
