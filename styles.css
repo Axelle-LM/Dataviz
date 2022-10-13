@@ -1,11 +1,80 @@
-#myMap {
-    height: 500px;
+body {
+    background-color: #1a1a1a;
 }
 
-.marker {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: aqua;
-    cursor: pointer;
+h1 {
+    font-size: 3em;
+    font-family: 'Jura', sans-serif;
+    font-weight: bold;
+    color: white;
+    width: 80%;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+}
+
+#map {
+    border-radius: 73px;
+}
+
+.graph1 {
+    width: 800px;
+    height: 400px;
+    background: linear-gradient(117.68deg, rgba(6, 20, 141, 0.33) -24.99%, rgba(208, 143, 67, 0.27) 94.23%);
+    border-radius: 58px;
+    margin-bottom: 6vh;
+}
+
+.graph2 {
+    width: 800px;
+    height: 400px;
+    background: linear-gradient(117.68deg, rgba(6, 20, 141, 0.33) -24.99%, rgba(208, 143, 67, 0.27) 94.23%);
+    border-radius: 58px;
+}
+
+.ContainerCarte {
+    display: flex;
+    flex-direction: column;
+}
+
+.ContainerGraph {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.droite {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 100vh;
+}
+
+.Data {
+    display: flex;
+    flex-direction: row;
+}
+
+.textedroite {
+    margin: 5vh;
+    color: white;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: lighter;
+    font-size: 2em;
+}
+
+.textehaut {
+    margin: 5vh;
+    color: white;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: lighter;
+    font-size: 2em;
+}
+
+#slider {
+    width: 1200px;
 }

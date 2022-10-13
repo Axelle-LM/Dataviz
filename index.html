@@ -20,114 +20,186 @@
 
 <body>
 
-    <h1>Carte JS Feu</h1>
+    <section class="dataviz">
+        <div class="droite">
+            <div class="Data">
+                <div class="ContainerCarte">
+                    <h1>CARTE DES DEPARTS DE FEU EN FRANCE ENTRE 2000 ET 2022 </h1>
+                    <div id='map' style='width: 1200px; height: 600px;'></div>
+                    <input id="slider" type="range" min="2002" max="2022" value="2002" step="1">
+                </div>
 
+                <div class="ContainerGraph">
+                    <div class="graph1"></div>
+                    <div class="graph2"></div>
+                </div>
+            </div>
 
-    <div id='map' style='width: 1200px; height: 600px;'></div>
+            <!-- Calendrier -->
+            <div class="interaction">
+                <form method="get">
+                    <label for="date">Choisissez une date entre le 1er janvier 2021 et le 31 decembre 2021</label>
+                    <select name="date" id="date">
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    <!-- <input type="date" id="date" name="date" min="2002-01-01" max="2022-10-10" value="2002-01-01"> -->
+                    <input type="button" id="précédente" value="Date précédente">
+                    <input type="button" id="submit" value="Choisir cette date">
+                    <input type="button" id="suivante" value="Date suivante">
+                </form>
+                <!-- Bouton pause et play -->
+                <img src="https://img.icons8.com/ios/344/pause--v1.png " alt="Mettre pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px; ">
+                <img src="https://img.icons8.com/ios-glyphs/344/play--v1.png " alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px; ">
+            </div>
+        </div>
+    </section>
 
+    <section class="contexte">
+        <p class="textehaut">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, </p>
 
-    <form method="get">
-        <label for="date">Choisissez une date entre le 21 juin 2022 et le 23 septembre 2022</label>
-        <input type="date" id="date" name="date" min="2022-06-20" max="2022-09-23" value="2022-06-21">
-        <input type="button" id="précédente" value="Date précédente">
-        <input type="button" id="submit" value="Choisir cette date">
-        <input type="button" id="suivante" value="Date suivante">
-    </form>
+        <img src="">
 
-    <img src="https://img.icons8.com/ios/344/pause--v1.png " alt="Mettre pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px; ">
-    <img src="https://img.icons8.com/ios-glyphs/344/play--v1.png " alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px; ">
+        <p class="textedroite">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos consequatur doloribus voluptates numquam at aperiam quaerat doloremque velit? Aspernatur qui at debitis totam repellat distinctio amet esse, eveniet optio explicabo!</p>
+
+    </section>
 
     <script>
+        //Accès au token
         mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFsaWVkcCIsImEiOiJjbDh4NjBqOWkwMXE3M3dwY292bDNzcDVoIn0.hxFDPbpzjCLJ3ZpIji1SJQ';
+        //Initialisation de la map 
         const map = new mapboxgl.Map({
             container: 'map',
+            //Application du style 
             style: 'mapbox://styles/nathaliedp/cl8x67nql001v15qbi2xa8vhv',
-            center: [1.178, 46.826], // starting position [lng, lat],
-            zoom: 5 // starting zoom
+            center: [31.220, 81.576], // starting position [lng, lat],
+            zoom: 0.82, // starting zoom
+            projection: 'globe'
         });
 
 
-        let datechange = function datechangement() {
-            document.getElementById("suivante").click();
-        }
+        // Valeur final 
+        // center: [3.483, 46.205], // starting position [lng, lat],
+        //     zoom: 4.6, // starting zoom
+        //     // These options control the camera position after animation
+        //     pitch: 50,
+        //     bearing: 20
 
-        let intervaldate = setInterval(datechange, 2000);
+        //TEST ANIMATION
 
-        document.getElementById("Pause").addEventListener("click", function() {
-            clearInterval(intervaldate);
-            intervaldate = null;
-            console.log("Pause test");
+        map.on('style.load', () => {
+            window.addEventListener('load', (event) => {
+                // Fly to a random location
+                map.flyTo({
+                    center: [3.483, 46.205], // starting position [lng, lat],
+                    zoom: 4.6, // starting zoom
+                    // These options control the camera position after animation
+                    pitch: 50,
+                    bearing: 20,
+                    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+                });
+            });
         });
 
-        document.getElementById("Play").addEventListener("click", function() {
-            if (intervaldate == null) {
-                intervaldate = setInterval(datechange, 2000);
-                console.log("Play test");
-            } else {
-                console.log("Déjà actif");
-            }
+        // let datechange = function datechangement() {
+        //     document.getElementById("suivante").click();
+        // }
 
+        // Permettre de changer de date automatiquement toutes les 2 secondes quand on effectue la fonction qui précède
+        // let intervaldate = setInterval(datechange, 2000);
 
-        });
+        // Fonction qui sert à mettre l'animation en pause
+        // document.getElementById("Pause").addEventListener("click", function() {
+        //     clearInterval(intervaldate);
+        //     intervaldate = null;
+        //     console.log("Pause test");
+        // });
 
+        // Fonction qui sert à relancer l'animation après la pause
+        // document.getElementById("Play").addEventListener("click", function() {
+        //     if (intervaldate == null) {
+        //         intervaldate = setInterval(datechange, 2000);
+        //         console.log("Play test");
+        //     } else {
+        //         console.log("Déjà actif");
+        //     }
+        // });
+
+        // Quand on arrive à 2022, on repasse à 2002
         document.getElementById("suivante").addEventListener("click", function() {
-            let date = document.getElementById("date").value;
-            let datelendemain = new Date(date);
-            datelendemain.setDate(datelendemain.getDate() + 1);
-            console.log(datelendemain);
-            let jour = datelendemain.getDate();
-            let mois = datelendemain.getMonth() + 1;
-            let annee = datelendemain.getFullYear();
-            if (jour < 10) {
-                jour = '0' + jour;
+            if (document.getElementById("date").value == 2022) {
+                document.getElementById("date").value = 2002;
+                document.getElementById("submit").click();
+                // Quand on clique sur suivant, ça met la valeur du slider à la valeur de la date
+                document.getElementById("slider").value = document.getElementById("date").value;
+            } else {
+                document.getElementById("date").value++;
+                document.getElementById("submit").click();
+                // Quand on clique sur suivant, ça met la valeur du slider à la valeur de la date
+                document.getElementById("slider").value = document.getElementById("date").value;
             }
-            if (mois < 10) {
-                mois = '0' + mois;
-            }
-            datelendemain = annee + '-' + mois + '-' + jour;
-            console.log(datelendemain);
-            document.getElementById("date").value = datelendemain;
-            document.getElementById("submit").click();
         });
-
+        // Même chose dans l'autre sens
         document.getElementById("précédente").addEventListener("click", function() {
-            let date = document.getElementById("date").value;
-            let datelendemain = new Date(date);
-            datelendemain.setDate(datelendemain.getDate() - 1);
-            console.log(datelendemain);
-            let jour = datelendemain.getDate();
-            let mois = datelendemain.getMonth() + 1;
-            let annee = datelendemain.getFullYear();
-            if (jour < 10) {
-                jour = '0' + jour;
+            if (document.getElementById("date").value == 2002) {
+                document.getElementById("date").value = 2022;
+                document.getElementById("submit").click();
+                document.getElementById("slider").value = document.getElementById("date").value;
+            } else {
+                document.getElementById("date").value--;
+                document.getElementById("submit").click();
+                document.getElementById("slider").value = document.getElementById("date").value;
             }
-            if (mois < 10) {
-                mois = '0' + mois;
-            }
-            datelendemain = annee + '-' + mois + '-' + jour;
-            console.log(datelendemain);
-            document.getElementById("date").value = datelendemain;
+        });
+
+        // Mettre la valeur de l'input avec l'id slider avec la même valeur que l'input avec l'id date
+        document.getElementById("slider").addEventListener("input", function() {
+            document.getElementById("date").value = document.getElementById("slider").value;
             document.getElementById("submit").click();
         });
 
+        // Mettre la valeur de l'input avec l'id date avec la même valeur que l'input avec l'id slider
+        document.getElementById("date").addEventListener("input", function() {
+            document.getElementById("slider").value = document.getElementById("date").value;
+            document.getElementById("submit").click();
+        });
 
         document.getElementById('submit').addEventListener('click', function() {
 
-            document.querySelectorAll('.marker').forEach(el => el.parentNode.removeChild(el));
+            document.querySelectorAll('.marker').forEach(img => img.parentNode.removeChild(img));
             let date = document.getElementById('date').value;
-
-            fetch('fire_nrt_M-C61_300460.json').then(function(response) {
+            fetch('fire_archive_M-C61_300927.json').then(function(response) {
                 response.json().then(function(data) {
 
                     function feu(data) {
                         data.forEach(function(f) {
-                            if (f.acq_date == date) {
-                                let el = document.createElement('div');
-                                el.className = 'marker';
-                                el.style.backgroundImage = "url('fire.png')";
-                                el.style.width = '40px';
-                                el.style.height = '30px';
-                                new mapboxgl.Marker(el)
+                            if (f.acq_date.substring(0, 4) == date && (f.acq_date.substring(5, 7) == 06 || f.acq_date.substring(5, 7) == 07 || f.acq_date.substring(5, 7) == 08 || f.acq_date.substring(5, 7) == 09)) {
+                                let img = document.createElement('img')
+                                img.className = 'marker';
+                                img.src = "fire.png";
+                                img.style.width = '50px';
+                                img.style.height = '30px';
+                                new mapboxgl.Marker(img)
                                     .setLngLat([f.longitude, f.latitude])
                                     .addTo(map);
                             }
