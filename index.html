@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firemap</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="d3.js"></script>
     <!-- Incluez le nécessaire pour faire marcher la bibliothèque Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <!-- À inclure APRÈS la CSS ! -->
@@ -15,73 +16,126 @@
 
     <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&display=swap" rel="stylesheet">
+
 
 </head>
 
 <body>
 
-    <section class="dataviz">
-        <div class="droite">
-            <div class="Data">
-                <div class="ContainerCarte">
-                    <h1>CARTE DES DEPARTS DE FEU EN FRANCE ENTRE 2000 ET 2022 </h1>
-                    <div id='map' style='width: 1200px; height: 600px;'></div>
-                    <input id="slider" type="range" min="2002" max="2022" value="2002" step="1">
-                </div>
-
-                <div class="ContainerGraph">
-                    <div class="graph1"></div>
-                    <div class="graph2"></div>
-                </div>
+    <nav>
+        <ul>
+            <div class="navg">
+                <li><a href="index.html">Data'Viz</a></li>
             </div>
+            <div class="navd">
+                <li><a href="index.html">Carte</a></li>
+                <li><a href="index.html">Température</a></li>
+            </div>
+        </ul>
+    </nav>
 
+    <header>
+        <h1>LES DES DEPARTS DE FEU <br>D'ETE EN FRANCE ENTRE 2002 ET 2022 </h1>
+    </header>
+
+    <section class="Carte">
+        <h2>Carte des départs de feu en France</h2>
+
+        <div class="ContainerCarte">
+
+            <div id="map"></div>
             <!-- Calendrier -->
             <div class="interaction">
                 <form method="get">
-                    <label for="date">Choisissez une date entre le 1er janvier 2021 et le 31 decembre 2021</label>
-                    <select name="date" id="date">
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                        </select>
-                    <!-- <input type="date" id="date" name="date" min="2002-01-01" max="2022-10-10" value="2002-01-01"> -->
-                    <input type="button" id="précédente" value="Date précédente">
-                    <input type="button" id="submit" value="Choisir cette date">
-                    <input type="button" id="suivante" value="Date suivante">
+                    <div class="Containerslider">
+                        <label class="choixannee" for="date">Choisissez une année entre 2002 et 2022</label>
+                        <input id="slider" type="range" min="2002" max="2022" value="2002" step="1">
+                        <div class="container_anneeprogress">
+                            <p class="anneeprogress">2002</p>
+                            <p class="anneeprogress">2003</p>
+                            <p class="anneeprogress">2004</p>
+                            <p class="anneeprogress">2005</p>
+                            <p class="anneeprogress">2006</p>
+                            <p class="anneeprogress">2007</p>
+                            <p class="anneeprogress">2008</p>
+                            <p class="anneeprogress">2009</p>
+                            <p class="anneeprogress">2010</p>
+                            <p class="anneeprogress">2011</p>
+                            <p class="anneeprogress">2012</p>
+                            <p class="anneeprogress">2013</p>
+                            <p class="anneeprogress">2014</p>
+                            <p class="anneeprogress">2015</p>
+                            <p class="anneeprogress">2016</p>
+                            <p class="anneeprogress">2017</p>
+                            <p class="anneeprogress">2018</p>
+                            <p class="anneeprogress">2019</p>
+                            <p class="anneeprogress">2020</p>
+                            <p class="anneeprogress">2021</p>
+                            <p class="anneeprogress">2022</p>
+                        </div>
+                    </div>
+
+                    <div class="choixdate">
+                        <select name="date" id="date">
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                        <input type="button" id="précédente" value="Date précédente">
+                        <div class="playandpause">
+                            <img src="play.png" alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px;" />
+                            <img src="pause.png" alt="Retirer pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px;" />
+                        </div>
+                        <input type="button" id="submit" value="Choisir cette date">
+                        <input type="button" id="suivante" value="Date suivante">
+                    </div>
                 </form>
-                <!-- Bouton pause et play -->
-                <img src="https://img.icons8.com/ios/344/pause--v1.png " alt="Mettre pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px; ">
-                <img src="https://img.icons8.com/ios-glyphs/344/play--v1.png " alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px; ">
             </div>
         </div>
+
     </section>
 
-    <section class="contexte">
-        <p class="textehaut">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting, </p>
+    <section class="ContainerGraph">
+        <h2>Comparatif des feux de 2002 à 2022 avec les températures</h2>
+        <div class="graph">
+            <div class="histo" id="histogramme">
+            </div>
+            <div class="texte">
+                <h3>Évolution des feux par année</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad.</p>
+            </div>
+        </div>
 
-        <img src="">
-
-        <p class="textedroite">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos consequatur doloribus voluptates numquam at aperiam quaerat doloremque velit? Aspernatur qui at debitis totam repellat distinctio amet esse, eveniet optio explicabo!</p>
-
+        <div class="graph">
+            <div class="ndp" id="nuagepoint"></div>
+            <div class="texte">
+                <h3>Moyenne des températures de 2002 à 2022</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad.</p>
+            </div>
+        </div>
     </section>
 
     <script>
@@ -91,59 +145,43 @@
         const map = new mapboxgl.Map({
             container: 'map',
             //Application du style 
-            style: 'mapbox://styles/nathaliedp/cl8x67nql001v15qbi2xa8vhv',
-            center: [31.220, 81.576], // starting position [lng, lat],
-            zoom: 0.82, // starting zoom
-            projection: 'globe'
+            style: 'mapbox://styles/nathaliedp/cl98kc48l00cv14l3p0toxepm',
+            center: [3.483, 46.205], // starting position [lng, lat],
+            zoom: 4.6, // starting zoom
+            // These options control the camera position after animation
+            pitch: 50,
+            bearing: 20,
         });
 
 
-        // Valeur final 
-        // center: [3.483, 46.205], // starting position [lng, lat],
-        //     zoom: 4.6, // starting zoom
-        //     // These options control the camera position after animation
-        //     pitch: 50,
-        //     bearing: 20
+        let datechange = function datechangement() {
+            document.getElementById("suivante").click();
+        }
 
-        //TEST ANIMATION
+        // Fonction pour lancer la lecture
+        function play() {
+            intervaldate = setInterval(datechange, 2000);
+        }
 
-        map.on('style.load', () => {
-            window.addEventListener('load', (event) => {
-                // Fly to a random location
-                map.flyTo({
-                    center: [3.483, 46.205], // starting position [lng, lat],
-                    zoom: 4.6, // starting zoom
-                    // These options control the camera position after animation
-                    pitch: 50,
-                    bearing: 20,
-                    essential: true // this animation is considered essential with respect to prefers-reduced-motion
-                });
-            });
+        // Fonction pour arrêter la lecture
+        function pause() {
+            clearInterval(intervaldate);
+            intervaldate = null;
+        }
+
+        // Quand je clique sur l'id Play, il devient en display none et c'est l'Id Pause qui s'affiche
+        document.getElementById("Play").addEventListener("click", function() {
+            document.getElementById("Play").style.display = "none";
+            document.getElementById("Pause").style.display = "block";
+            play();
         });
 
-        // let datechange = function datechangement() {
-        //     document.getElementById("suivante").click();
-        // }
-
-        // Permettre de changer de date automatiquement toutes les 2 secondes quand on effectue la fonction qui précède
-        // let intervaldate = setInterval(datechange, 2000);
-
-        // Fonction qui sert à mettre l'animation en pause
-        // document.getElementById("Pause").addEventListener("click", function() {
-        //     clearInterval(intervaldate);
-        //     intervaldate = null;
-        //     console.log("Pause test");
-        // });
-
-        // Fonction qui sert à relancer l'animation après la pause
-        // document.getElementById("Play").addEventListener("click", function() {
-        //     if (intervaldate == null) {
-        //         intervaldate = setInterval(datechange, 2000);
-        //         console.log("Play test");
-        //     } else {
-        //         console.log("Déjà actif");
-        //     }
-        // });
+        // Quand je clique sur l'id Pause, il devient en display none et c'est l'Id Play qui s'affiche
+        document.getElementById("Pause").addEventListener("click", function() {
+            document.getElementById("Pause").style.display = "none";
+            document.getElementById("Play").style.display = "block";
+            pause();
+        });
 
         // Quand on arrive à 2022, on repasse à 2002
         document.getElementById("suivante").addEventListener("click", function() {
@@ -159,6 +197,7 @@
                 document.getElementById("slider").value = document.getElementById("date").value;
             }
         });
+
         // Même chose dans l'autre sens
         document.getElementById("précédente").addEventListener("click", function() {
             if (document.getElementById("date").value == 2002) {
@@ -186,29 +225,230 @@
 
         document.getElementById('submit').addEventListener('click', function() {
 
-            document.querySelectorAll('.marker').forEach(img => img.parentNode.removeChild(img));
+            document.querySelectorAll('.marker').forEach(el => el.parentNode.removeChild(el));
             let date = document.getElementById('date').value;
-            fetch('fire_archive_M-C61_300927.json').then(function(response) {
+            fetch('fire_archive_M-C61_301806.json').then(function(response) {
                 response.json().then(function(data) {
 
                     function feu(data) {
                         data.forEach(function(f) {
                             if (f.acq_date.substring(0, 4) == date && (f.acq_date.substring(5, 7) == 06 || f.acq_date.substring(5, 7) == 07 || f.acq_date.substring(5, 7) == 08 || f.acq_date.substring(5, 7) == 09)) {
-                                let img = document.createElement('img')
-                                img.className = 'marker';
-                                img.src = "fire.png";
-                                img.style.width = '50px';
-                                img.style.height = '30px';
-                                new mapboxgl.Marker(img)
+                                let el = document.createElement('div')
+                                el.className = 'marker';
+                                el.style.width = '3px';
+                                el.style.height = '3px';
+
+                                new mapboxgl.Marker(el)
                                     .setLngLat([f.longitude, f.latitude])
                                     .addTo(map);
                             }
                         });
                     }
+
                     feu(data)
                 })
             })
         })
+
+        // Compter le nombre de feu par année
+        document.getElementById('submit').addEventListener('click', function() {
+            let date = document.getElementById('date').value;
+            fetch('fire_archive_M-C61_301806.json').then(function(response) {
+                response.json().then(function(data) {
+
+                    function feu(data) {
+                        let nbfeu = 0;
+                        data.forEach(function(f) {
+                            if (f.acq_date.substring(0, 4) == date && (f.acq_date.substring(5, 7) == 06 || f.acq_date.substring(5, 7) == 07 || f.acq_date.substring(5, 7) == 08 || f.acq_date.substring(5, 7) == 09)) {
+                                nbfeu++;
+                            }
+                        });
+                    }
+
+                    feu(data)
+                })
+            })
+        })
+
+
+        let nbfeuannee = [{
+            A: 2002,
+            B: 1426
+        }, {
+            A: 2003,
+            B: 2891
+        }, {
+            A: 2004,
+            B: 1910
+        }, {
+            A: 2005,
+            B: 1448
+        }, {
+            A: 2006,
+            B: 1211
+        }, {
+            A: 2007,
+            B: 785
+        }, {
+            A: 2008,
+            B: 931
+        }, {
+            A: 2009,
+            B: 893
+        }, {
+            A: 2010,
+            B: 670
+        }, {
+            A: 2011,
+            B: 626
+        }, {
+            A: 2012,
+            B: 710
+        }, {
+            A: 2013,
+            B: 854
+        }, {
+            A: 2014,
+            B: 633
+        }, {
+            A: 2015,
+            B: 912
+        }, {
+            A: 2016,
+            B: 1092
+        }, {
+            A: 2017,
+            B: 1082
+        }, {
+            A: 2018,
+            B: 812
+        }, {
+            A: 2019,
+            B: 930
+        }, {
+            A: 2020,
+            B: 667
+        }, {
+            A: 2021,
+            B: 934
+        }, {
+            A: 2022,
+            B: 2208
+        }];
+
+        let scaleY = 1 / 30;
+
+        const axeG =
+            d3.axisLeft(d3.scaleLinear()
+                .domain([0, 3000]) // la plage de valeurs possibles 
+                .range([100, 0])) // les coordonnées du début et de fin de l'axe
+            .ticks(8)
+            .tickFormat(d3.format('d'))
+
+
+        const axeB =
+            d3.axisBottom(d3.scaleLinear()
+                .domain([01, 22]) // la plage de valeurs possibles 
+                .range([0, 150])) // les coordonnées du début et de fin de l'axe
+            .ticks(21)
+            .tickFormat(d3.format('d'));
+
+        let svg = d3.select("#histogramme")
+            .append("svg")
+            .attr("width", 100 + "%")
+            .attr("height", 90 + "%")
+            .attr("viewBox", "-30 -5 200 120")
+
+
+        svg.append("g")
+            .call(axeG)
+            .style("color", "white")
+            .style("font-size", "0.5em");
+
+
+        svg.append("g")
+            .call(axeB)
+            .attr("transform", "translate(0, 100)")
+            .style("color", "white")
+            .style("font-size", "0.3em");
+
+        let w = 150 / nbfeuannee.length;
+
+        d3.select("svg")
+            .selectAll(".barres")
+            .data(nbfeuannee)
+            .enter()
+            .append("g")
+            .attr("class", "barres")
+            .attr("transform", (d, i) => `translate(${i*w},100)`)
+
+        d3.selectAll(".barres")
+            .append("rect")
+            .style("width", w - 1)
+            .style("height", d => d.B * scaleY)
+            .style("y", d => -d.B * scaleY)
+            .style("x", "4")
+            .style("fill", "orange")
+            .style("stroke", "none");
+
+
+        d3.json('temperature.json').then(function(d) {
+
+
+            let scaley = d3.scaleLinear()
+                .domain([21, 27]) // la plage de valeurs possibles 
+                .range([100, 0])
+
+
+            const axeY =
+                d3.axisLeft(scaley) // les coordonnées du début et de fin de l'axe
+                .ticks(5) // Nombre de step 
+                .tickFormat(d3.format('d'))
+
+
+            let scalex = d3.scaleLinear()
+                .domain([2000, 2022]) // la plage de valeurs possibles 
+                .range([0, 150]) // les coordonnées du début et de fin de l'axe
+
+            const axeX =
+                d3.axisBottom(scalex) // les coordonnées du début et de fin de l'axe
+                .ticks(10) // Nombre de step 
+                .tickFormat(d3.format('d')); // Pour enlever la virgule
+
+
+            console.log("test")
+
+            var svgnuage = d3.select("#nuagepoint")
+                .append("svg")
+                .attr("width", 100 + "%")
+                .attr("height", 90 + "%")
+                .attr("viewBox", "-30 -5 200 120")
+
+            svgnuage.append("g")
+                .call(axeY)
+                .style("color", "white")
+                .style("font-size", "0.5em");
+
+
+            svgnuage.append("g")
+                .call(axeX)
+                .attr("transform", "translate(0, 100)")
+                .style("color", "white")
+                .style("font-size", "0.3em");
+
+            svgnuage.selectAll(".point")
+                .data(d)
+                .enter()
+                .append("circle")
+                .attr("width", "100px")
+                .attr("height", "100px")
+                .style("fill", "orange")
+                .style("stroke", "none")
+                .attr("class", "point")
+                .attr("r", 3)
+                .attr("transform", (d, i) => `translate(${scalex (d.annee)}, ${scaley (d.temp_moy)})`)
+
+        });
     </script>
 
 </body>
