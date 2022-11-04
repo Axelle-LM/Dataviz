@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firemap</title>
+    <link rel="icon" type="image/png" href="logo.png" />
     <link rel="stylesheet" href="styles.css">
     <script src="d3.js"></script>
     <!-- Incluez le nécessaire pour faire marcher la bibliothèque Leaflet.js -->
@@ -30,14 +31,18 @@
     <nav>
         <ul>
             <div class="navg">
-                <li><a href="index.html">Data'Viz</a></li>
+                <li>
+                    <a href="index.html"><img src="logo.png" alt="Lien vers le haut de page" class="logo"></a>
+                </li>
             </div>
             <div class="navd">
-                <li><a href="index.html">Carte</a></li>
-                <li><a href="index.html">Température</a></li>
+                <li><a href="index.html#ContainerCarte">Carte</a></li>
+                <li><a href="index.html#ContainerGraph">Température</a></li>
+                <li><a href="index.html#Contexte">Projet</a> </li>
             </div>
         </ul>
     </nav>
+
 
     <header>
         <h1>LES DES DEPARTS DE FEU <br>D'ETE EN FRANCE ENTRE 2002 ET 2022 </h1>
@@ -46,7 +51,7 @@
     <section class="Carte">
         <h2>Carte des départs de feu en France</h2>
 
-        <div class="ContainerCarte">
+        <div class="ContainerCarte" id="ContainerCarte">
 
             <div id="map"></div>
             <!-- Calendrier -->
@@ -81,30 +86,31 @@
                     </div>
 
                     <div class="choixdate">
-                        <select name="date" id="date">
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                    </select>
+
                         <input type="button" id="précédente" value="Date précédente">
+                        <select name="date" id="date">
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
                         <div class="playandpause">
                             <img src="play.png" alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px;" />
                             <img src="pause.png" alt="Retirer pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px;" />
@@ -118,7 +124,7 @@
 
     </section>
 
-    <section class="ContainerGraph">
+    <section class="ContainerGraph" id="ContainerGraph">
         <h2>Comparatif des feux de 2002 à 2022 avec les températures</h2>
         <div class="graph">
             <div class="histo" id="histogramme">
@@ -137,6 +143,23 @@
             </div>
         </div>
     </section>
+
+    <section class="ctxt">
+        <h2>Contexte du projet</h2>
+        <div class="contexte">
+            <p class="gauche">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad. Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Nobis, perferendis quia nisi perspiciatis ratione in temporibus cumque tempore voluptate explicabo molestias esse sint eaque dicta, eveniet iste quod nam obcaecati. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
+                rem officia sequi id quos est, animi similique facilis doloribus alias esse amet deleniti corrupti labore tempore a error quas veniam.
+            </p>
+            <div>
+                <p>Pour en savoir plus :</p>
+                <a href="https://www.ecologie.gouv.fr/prevention-des-feux-foret"><button class="prevention">Prévention des feux <br>de fôret
+                </button></a>
+            </div>
+        </div>
+    </section>
+
 
     <script>
         //Accès au token
