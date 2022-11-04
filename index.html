@@ -490,7 +490,7 @@
                     .style("opacity", 1)
                     .append("text")
                     .attr("class", "label")
-                    .attr("y", 20)
+                    .attr("y", 22)
                     .attr("text-anchor", "middle")
                     .text(d => d.B + " feux" + " en " + d.A)
                     .style("fill", "white")
@@ -534,7 +534,7 @@
                 .append("svg")
                 .attr("width", 100 + "%")
                 .attr("height", 90 + "%")
-                .attr("viewBox", "-30 -5 200 120")
+                .attr("viewBox", "-30 -5 200 130")
 
             svgnuage.append("g")
                 .call(axeY)
@@ -548,6 +548,20 @@
                 .style("color", "white")
                 .style("font-size", "0.3em");
 
+            svgnuage.append("path")
+                .datum(d)
+                .attr("fill", "none")
+                .style("stroke", "url(#areaGradient)")
+                .attr("stroke-width", 2)
+                .attr("d", d3.line()
+                    .x(function(d) {
+                        return scalex(d.annee)
+                    })
+                    .y(function(d) {
+                        return scaley(d.temp_moy)
+                    })
+                )
+
             svgnuage.selectAll(".point")
                 .data(d)
                 .enter()
@@ -557,8 +571,31 @@
                 .style("fill", "orange")
                 .style("stroke", "none")
                 .attr("class", "point")
-                .attr("r", 3)
+                .attr("r", 2)
                 .attr("transform", (d, i) => `translate(${scalex (d.annee)}, ${scaley (d.temp_moy)})`)
+                .on("mouseover", function(d) {
+                    d3.selectAll(".point")
+                        .style("opacity", 0.3);
+                    d3.select(this)
+                        .style("opacity", 1)
+                        .style("r", 5)
+                        .append("text")
+                        .attr("class", "label")
+                        .attr("y", 22)
+                        .attr("text-anchor", "middle")
+                        .text(d => d.temp_moy + "°C" + " en " + d.annee)
+                        .style("fill", "white")
+                        .style("position", "absolute")
+                        .style("font-size", "0.5em");
+                })
+                .on("mouseout", function(d) {
+                    d3.selectAll(".point")
+                        .style("opacity", 1);
+                    d3.select(this)
+                        .style("r", 2)
+                        .select(".label")
+                        .remove();
+                });
 
         });
 
