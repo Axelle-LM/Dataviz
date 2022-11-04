@@ -468,13 +468,40 @@
         }
         
         footer {
-            background-color: #000000;
             color: rgb(233, 230, 230);
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8em;
             text-align: center;
             padding: 20px;
             margin-top: 20px;
+        }
+        
+        .volet-visible {
+            cursor: pointer;
+            height: 110vh;
+            overflow: hidden;
+            background-color: #000000da;
+        }
+        
+        .volet-invisible {
+            color: white;
+            position: absolute;
+            cursor: pointer;
+            height: 25vh;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        
+        .volet-invisible:hover {
+            cursor: pointer;
+            opacity: 90%;
+            background-color: #575757;
+            transition: 0.5s;
+        }
+        
+        .titre_ml {
+            font-size: 1.8em;
+            text-decoration: underline;
         }
         /* Style du burger menu */
         
