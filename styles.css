@@ -472,8 +472,12 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8em;
             text-align: center;
-            padding: 20px;
+            padding-top: 20px;
             margin-top: 20px;
+        }
+        
+        .footer {
+            padding: 20px;
         }
         
         .volet-visible {
@@ -487,7 +491,7 @@
             color: white;
             position: absolute;
             cursor: pointer;
-            height: 25vh;
+            height: 27vh;
             overflow: hidden;
             background-color: #000000;
         }
