@@ -580,7 +580,7 @@
                         .style("opacity", 1)
                         .style("r", 5)
                         .append("text")
-                        .attr("class", "label")
+                        .attr("class", "labelpoint")
                         .attr("y", 22)
                         .attr("text-anchor", "middle")
                         .text(d => d.temp_moy + "°C" + " en " + d.annee)
@@ -593,7 +593,7 @@
                         .style("opacity", 1);
                     d3.select(this)
                         .style("r", 2)
-                        .select(".label")
+                        .select(".labelpoint")
                         .remove();
                 });
 
