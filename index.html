@@ -484,18 +484,22 @@
 
         d3.selectAll(".barres")
             .on("mouseover", function(d) {
+                d3.selectAll(".barres")
+                    .style("opacity", 0.3);
                 d3.select(this)
+                    .style("opacity", 1)
                     .append("text")
                     .attr("class", "label")
-                    // .attr("x", w / 2 + 8)
                     .attr("y", 20)
                     .attr("text-anchor", "middle")
-                    .text(d => d.B + " feux")
+                    .text(d => d.B + " feux" + " en " + d.A)
                     .style("fill", "white")
                     .style("position", "absolute")
                     .style("font-size", "0.5em");
             })
             .on("mouseout", function(d) {
+                d3.selectAll(".barres")
+                    .style("opacity", 1);
                 d3.select(this)
                     .select(".label")
                     .remove();
