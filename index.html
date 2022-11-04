@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
 
 </head>
@@ -44,13 +45,13 @@
 
 
     <header>
-        <h1>LES DES DEPARTS DE FEU <br>D'ETE EN FRANCE ENTRE 2002 ET 2022 </h1>
+        <h1>LES DÉPARTS DE FEU <br>D'ÉTÉ EN FRANCE ENTRE 2002 ET 2022 </h1>
     </header>
 
-    <section class="Carte">
+    <section class="Carte" id="ContainerCarte">
         <h2>Carte des départs de feu en France</h2>
 
-        <div class="ContainerCarte" id="ContainerCarte">
+        <div class="ContainerCarte">
 
             <div id="map"></div>
             <!-- Calendrier -->
@@ -130,7 +131,8 @@
             </div>
             <div class="texte">
                 <h3>Évolution des feux par année</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad.</p>
+                <p>Ce graphique représente les départs de feu de forêt chaque année, de 2002 à 2022. On remarque que l'année où il y a eu le plus de départs de feu est durant la période de canicule de 2003, puis succéder par l'année 2022.
+                </p>
             </div>
         </div>
 
@@ -138,18 +140,18 @@
             <div class="ndp" id="nuagepoint"></div>
             <div class="texte">
                 <h3>Moyenne des températures de 2002 à 2022</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad.</p>
+                <p>Ce graphique représente les températures moyennes maximales durant la période de juin jusque septembre de chaque année de 2002 à 2022. Ces cinq dernières année une hausse de ces moyennes ont augmenté, c'est même ce qui semble devenir la
+                    norme pour ces prochaines années.</p>
             </div>
         </div>
     </section>
 
-    <section class="ctxt">
+    <section class="ctxt" id="Contexte">
         <h2>Contexte du projet</h2>
         <div class="contexte">
             <p class="gauche">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. A velit eum aperiam atque, illum delectus ab repellat doloremque libero aut, inventore nulla facilis eaque veniam officiis unde suscipit ullam ad. Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Nobis, perferendis quia nisi perspiciatis ratione in temporibus cumque tempore voluptate explicabo molestias esse sint eaque dicta, eveniet iste quod nam obcaecati. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                rem officia sequi id quos est, animi similique facilis doloribus alias esse amet deleniti corrupti labore tempore a error quas veniam.
+                Ceci est un projet réalisé par des étudiants dont le but a été de mettre en oeuvre ce que nous avions vu en réalisant un site demandant d'utiliser des donnés. Nous avons choisi le sujet des feux de forêt en France de ces 20 dernières années afin de faire
+                prendre conscience de l'évolution des cas de feu de fôret ainsi que des températures qui ne cesse d'augmenter. C'est un sujet d'actualité qui nous concerne tous mais dont peu d'entre nous en connaisse réellement l'ampleur.
             </p>
             <div>
                 <p>Pour en savoir plus :</p>
@@ -159,6 +161,50 @@
         </div>
     </section>
 
+    <footer>
+        <div class="footer">
+            <div>
+                <p><strong>MMI2 2022 - Projet Dataviz réalisé par :</p></strong>
+                    <p>Killian Quelavoine</p>
+                    <p>Nathalie Douang Praseuth</p>
+                    <p>Axelle Nigon</p>
+            </div>
+            <div>
+                <p><strong>Mentions légales</strong> </p>
+                <p>Site réalisé dans le cadre d'un projet scolaire</p>
+                <p>Données utilisées : <a href="https://www.data.gouv.fr/fr/datasets/feux-de-foret-en-france-depuis-2002/">Données Feux de forêt appartenant au gouvernement français</a> et <a href="https://www.infoclimat.fr/climatologie-mensuelle/07156/juin/2002/paris-montsouris.html">Données Températures appartenant à infoclimat.fr</a></p>
+
+                <p><strong>Editeur</strong></p>
+                <p>Killian Quelavoine, Axelle Nigon, Nathalie Douang Praseuth</p>
+                <p>Siège social : 2 Rue Albert Einstein, 77420 Champs-sur-Marne </p>
+                <p>Numéro de téléphone : 01 60 95 85 85</p>
+
+                <p><strong>Hébergeur</strong></p>
+                <p>Github</p>
+                <p>Siège social : 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</p>
+
+                <p><strong>Habillage du site</strong></p>
+                <p>Axelle Nigon, Killian Quelavoine, Nathalie Douang Praseuth</p>
+
+                <p><strong>Propriété intellectuelle</strong></p>
+                <p>Les marques, logos, signes ainsi que tous les contenus du site (textes, images, son…) font l’objet d’une protection par le Code de la propriété intellectuelle et plus particulièrement par le droit d’auteur. L’Utilisateur doit solliciter
+                    l’autorisation préalable du site pour toute reproduction, publication, copie des différents contenus. Il s’engage à une utilisation des contenus du site dans un cadre strictement privé : toute utilisation à des fins commerciales et
+                    publicitaires est strictement interdite. Toute représentation totale ou partielle de ce site par quelque procédé que ce soit, sans l’autorisation expresse de l’exploitant du site Internet constituerait une contrefaçon sanctionnée par
+                    l’article L 335-2 et suivants du Code de la propriété intellectuelle. Il est rappelé conformément à l’article L122-5 du Code de propriété intellectuelle que l’Utilisateur qui reproduit, copie ou publie le contenu protégé doit citer
+                    l’auteur et sa source. Toute reproduction de ces images reste sous la responsabilité de l’Utilisateur. Les images décoratives et informatives utilisées sur ce site sont entièrement libres de droit et/ou sous licence Creative Commons,
+                    et restent dans le cadre d’un projet étudiant : aucune image ne sera utilisée à des fins commerciales.</p>
+
+                <p>Sources des images provenant de banques d’images extérieures : <a href="https://unsplash.com/">Unsplash</a> </p>
+
+                <p>Les sources des images diffusées sur le site https://axelle-lm.github.io/Dataviz/ sont réputées fiables mais le site ne garantit pas qu’il soit exempt de défauts, d’erreurs ou d’omissions. Les informations communiquées sont présentées
+                    à titre indicatif et général sans valeur contractuelle. Le site https://axelle-lm.github.io/Dataviz/ ne peut être tenu responsable de la modification des dispositions administratives et juridiques survenant après la publication. De
+                    même, le site ne peut être tenu responsable de l’utilisation et de l’interprétation de l’information contenue dans ce site. L’Utilisateur s’assure de garder son mot de passe secret. Toute divulgation du mot de passe, quelle que soit
+                    sa forme, est interdite. Le site décline toute responsabilité. Le site https://axelle-lm.github.io/Dataviz/ ne peut être tenu pour responsable d’éventuels virus qui pourraient infecter l’ordinateur ou tout matériel informatique de
+                    l’Internaute, suite à une utilisation, à l’accès, ou au téléchargement provenant de ce site. La responsabilité du site ne peut être engagée en cas de force majeure ou du fait imprévisible et insurmontable d’un tiers.</p>
+
+            </div>
+        </div>
+    </footer>
 
     <script>
         //Accès au token
@@ -167,11 +213,11 @@
         const map = new mapboxgl.Map({
             container: 'map',
             //Application du style 
-            style: 'mapbox://styles/nathaliedp/cl98kc48l00cv14l3p0toxepm',
+            style: 'mapbox://styles/nathaliedp/cla2xdem9002f14pcpyzv0zd3',
             center: [3.483, 46.205], // starting position [lng, lat],
-            zoom: 4.6, // starting zoom
+            zoom: 4.5, // starting zoom
             // These options control the camera position after animation
-            pitch: 50,
+            pitch: 46,
             bearing: 20,
         });
 
@@ -385,7 +431,7 @@
         svg.append("g")
             .call(axeG)
             .style("color", "white")
-            .style("font-size", "0.5em");
+            .style("font-size", "0.3em");
 
 
         svg.append("g")
@@ -395,6 +441,28 @@
             .style("font-size", "0.3em");
 
         let w = 150 / nbfeuannee.length;
+
+
+        var areaGradient = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "areaGradient")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "0%").attr("y2", "100%");
+
+        areaGradient.append("stop")
+            .attr("offset", "10%")
+            .attr("stop-color", "#BE0303")
+            .attr("stop-opacity", 1);
+
+        areaGradient.append("stop")
+            .attr("offset", "50%")
+            .attr("stop-color", "#C05316")
+            .attr("stop-opacity", 1);
+
+        areaGradient.append("stop")
+            .attr("offset", "90%")
+            .attr("stop-color", "#DE7A04")
+            .attr("stop-opacity", 1);
 
         d3.select("svg")
             .selectAll(".barres")
@@ -410,7 +478,7 @@
             .style("height", d => d.B * scaleY)
             .style("y", d => -d.B * scaleY)
             .style("x", "4")
-            .style("fill", "orange")
+            .style("fill", "url(#areaGradient)")
             .style("stroke", "none");
 
 
@@ -449,7 +517,7 @@
             svgnuage.append("g")
                 .call(axeY)
                 .style("color", "white")
-                .style("font-size", "0.5em");
+                .style("font-size", "0.3em");
 
 
             svgnuage.append("g")

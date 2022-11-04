@@ -27,7 +27,7 @@
             top: 0;
             left: 0;
             z-index: 100;
-            font-size: 1.3em;
+            font-size: 1em;
             font-family: 'Jura', sans-serif;
             text-shadow: 1px 2px 4px black;
         }
@@ -231,7 +231,7 @@
             font-family: 'Jura', sans-serif;
             color: white;
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
         }
         
         .graph h3 {
@@ -296,6 +296,8 @@
         
         input[type=range] {
             -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
             margin: 10px 0;
             width: 100%;
         }
@@ -322,8 +324,10 @@
             border-radius: 6px;
             background: #e65521;
             cursor: pointer;
-            -webkit-appearance: none;
             margin-top: -5px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
         input[type=range]:focus::-webkit-slider-runnable-track {
@@ -410,6 +414,8 @@
         
         .contexte {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: space-around;
             width: 100%;
             padding-left: 5%;
@@ -420,7 +426,7 @@
             font-family: 'Jura', sans-serif;
             color: white;
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
             width: 60%;
         }
         
@@ -451,14 +457,24 @@
             height: 80px;
             width: 300px;
             color: white;
-            font-size: 0.8em;
+            font-size: 0.5em;
             cursor: pointer;
         }
         
         button:hover {
             transform: scale(1.2);
-            box-shadow: 3px 3px 5px darkmagenta;
+            box-shadow: 3px 3px 5px rgb(193, 78, 7);
             transition: 0.5s;
+        }
+        
+        footer {
+            background-color: #000000;
+            color: rgb(233, 230, 230);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8em;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
         }
         /* Style du burger menu */
         
@@ -486,7 +502,7 @@
                 width: 60%;
             }
             .texte p {
-                font-size: 1.2em;
+                font-size: 1em;
             }
             .ndp {
                 width: 60%;
@@ -512,7 +528,7 @@
                 width: 85%;
             }
             .choixdate input {
-                font-size: 1.2em;
+                font-size: 1em;
             }
             h2 {
                 padding-left: 5%;
@@ -539,14 +555,10 @@
                 width: 80%;
             }
             .texte p {
-                font-size: 1.2em;
+                font-size: 1em;
             }
             .ndp {
                 width: 80%;
-            }
-            .contexte {
-                align-items: center;
-                flex-direction: column;
             }
             .contexte .gauche {
                 width: 100%;
