@@ -12,13 +12,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="d3.js"></script>
     <script src="script.js" defer></script>
-    <!-- À inclure APRÈS la CSS ! -->
     <!-- API de la map -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-    <!-- La bibliothèque Leaflet.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +27,8 @@
 </head>
 
 <body>
+    <!-- Accessible aller au contenu principal -->
+    <a href="#ContainerCarte" class="skip-link">Aller au contenu principal</a>
 
     <!-- Nav bar -->
     <nav>
@@ -38,9 +36,9 @@
             <li>
                 <a href="index.html"><img src="logo.png" alt="Lien vers le haut de page" class="logo"></a>
             </li>
-            <li><a href="#ContainerCarte">Carte</a></li>
-            <li><a href="#ContainerGraph">Température</a></li>
-            <li><a href="#Contexte">Projet</a> </li>
+            <li><a href="#ContainerCarte" alt="Lien vers la Carte">Carte</a></li>
+            <li><a href="#ContainerGraph" alt="Lien vers les graphiques">Température</a></li>
+            <li><a href="#Contexte" alt="Lien vers l'explication du projet">Projet</a> </li>
         </ul>
     </nav>
     <!-- Fin Nav bar -->
@@ -48,6 +46,7 @@
     <!-- Header avec titre principal -->
     <header>
         <h1>LES DÉPARTS DE FEU <br>D'ÉTÉ EN FRANCE ENTRE 2002 ET 2022 </h1>
+        <a href="#ContainerCarte"><img src="arrow.png" alt="Démarrer la navigation" class="arrow"></a>
     </header>
     <!-- ---- -->
 
@@ -65,7 +64,7 @@
             <div class="interaction">
                 <form method="get">
                     <div class="Containerslider">
-                        <label class="choixannee" for="date">Choisissez une année entre 2002 et 2022</label>
+                        <label class="choixannee" for="slider">Choisissez une année entre 2002 et 2022</label>
                         <!-- Selection de date sur la bar  -->
                         <input id="slider" type="range" min="2002" max="2022" value="2002" step="1">
                         <div class="container_anneeprogress">
@@ -186,7 +185,7 @@
                 prendre conscience de l'évolution des cas de feu de fôret ainsi que des températures qui ne cesse d'augmenter. C'est un sujet d'actualité qui nous concerne tous mais dont peu d'entre nous en connaisse réellement l'ampleur.
             </p>
             <div>
-                <p>Pour en savoir plus :</p>
+                <h3>Pour en savoir plus :</h3>
                 <a href="https://www.ecologie.gouv.fr/prevention-des-feux-foret"><button class="prevention">Prévention des feux <br>de fôret
                 </button></a>
             </div>
@@ -206,7 +205,7 @@
                         <p>Axelle Nigon</p>
                 </div>
                 <div>
-                    <p class="titre_ml"><strong>↓ Mentions légales ↓</strong></p>
+                    <h3 class="titre_ml">↓ Mentions légales ↓</h3>
                     <p>Site réalisé dans le cadre d'un projet scolaire</p>
                     <p>Données utilisées : <a href="https://www.data.gouv.fr/fr/datasets/feux-de-foret-en-france-depuis-2002/">Données Feux de forêt appartenant au gouvernement français</a> et <a href="https://www.infoclimat.fr/climatologie-mensuelle/07156/juin/2002/paris-montsouris.html">Données Températures appartenant à infoclimat.fr</a></p>
 
