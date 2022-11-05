@@ -208,6 +208,7 @@ let nbfeuannee = [{
 }];
 
 //-----------------Graph Histogramme---------------------
+// Mise en place d'une échelle pour que nos barrs soient plus petites
 let scaleY = 1 / 30;
 
 
@@ -227,12 +228,14 @@ const axeB =
     .ticks(21)
     .tickFormat(d3.format('d'));
 
+//Creation du graphique
 let svg = d3.select("#histogramme")
     .append("svg")
     .attr("width", 100 + "%")
     .attr("height", 90 + "%")
     .attr("viewBox", "-30 -5 200 130")
 
+// Ajout des axes
 svg.append("g")
     .call(axeG)
     .style("color", "white")
@@ -270,6 +273,7 @@ areaGradient.append("stop")
     .attr("stop-color", "#DE7A04")
     .attr("stop-opacity", 1);
 
+//Création des barres
 d3.select("svg")
     .selectAll(".barres")
     .data(nbfeuannee)
@@ -287,6 +291,7 @@ d3.selectAll(".barres")
     .style("fill", "url(#areaGradient)") //On applique le linear gradiant qu'on a crée précédamment 
     .style("stroke", "none");
 
+// Lorsqu'on passe la souris sur une barre, les autres barres deviennent plus transparentes et on créer un texte qui affiche le nombre de feu pour l'année correspondante.
 d3.selectAll(".barres")
     .on("mouseover", function(d) {
         d3.selectAll(".barres")
@@ -303,6 +308,7 @@ d3.selectAll(".barres")
             .style("font-family", "Montserrat")
             .style("font-size", "0.5em");
     })
+    // Quand on retire la souris, tout revient à la normal
     .on("mouseout", function(d) {
         d3.selectAll(".barres")
             .style("opacity", 1);
@@ -323,7 +329,7 @@ d3.json('temperature.json').then(function(d) {
         .domain([21, 27]) // la plage de valeurs possibles 
         .range([100, 0])
 
-
+    // Création des axes
     const axeY =
         d3.axisLeft(scaley) // les coordonnées du début et de fin de l'axe
         .ticks(5) // Nombre de step 
@@ -344,6 +350,7 @@ d3.json('temperature.json').then(function(d) {
 
     let svgnuage = d3.select("#nuagepoint")
 
+    // Création du graphique
     svgnuage
         .append("svg")
         .attr("class", "svgndp")
@@ -351,6 +358,7 @@ d3.json('temperature.json').then(function(d) {
         .attr("height", 90 + "%")
         .attr("viewBox", "-30 -5 200 130")
 
+    // Ajout des axes
     d3.select(".svgndp")
         .append("g")
         .call(axeY)
@@ -365,6 +373,7 @@ d3.json('temperature.json').then(function(d) {
         .style("color", "white")
         .style("font-size", "0.3em");
 
+    // Création de la ligne qui relie les points
     d3.select(".svgndp")
         .append("path")
         .datum(d)
@@ -380,6 +389,7 @@ d3.json('temperature.json').then(function(d) {
             })
         )
 
+    // Création des groupes pour les points et le texte
     d3.select(".svgndp")
         .selectAll(".point")
         .data(d)
@@ -387,7 +397,7 @@ d3.json('temperature.json').then(function(d) {
         .append("g")
         .attr("class", "point");
 
-
+    // Création des points
     d3.selectAll(".point")
         .append("circle")
         .attr("class", "rond")
@@ -398,6 +408,7 @@ d3.json('temperature.json').then(function(d) {
         .attr("r", 2)
         .attr("transform", (d, i) => `translate(${scalex (d.annee)}, ${scaley (d.temp_moy)})`);
 
+    // Création du texte quand on passe la souris sur un point
     d3.selectAll(".point")
         .on("mouseover", function(d) {
             d3.select(this)
@@ -418,6 +429,7 @@ d3.json('temperature.json').then(function(d) {
                 .remove();
         });
 
+    // Changement de taille des ronds quand on passe la souris dessus
     d3.selectAll(".rond")
         .on("mouseover", function(d) {
             d3.selectAll(".rond")
