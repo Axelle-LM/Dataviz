@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firemap</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png" />
+    <!-- Lien vers D3js et CSS -->
     <link rel="stylesheet" href="styles.css">
     <script src="d3.js"></script>
-    <!-- Incluez le nécessaire pour faire marcher la bibliothèque Leaflet.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <!-- À inclure APRÈS la CSS ! -->
+    <!-- API de la map -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-
+    <!-- La bibliothèque Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
-    <!-- font -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&display=swap" rel="stylesheet">
@@ -28,37 +30,42 @@
 </head>
 
 <body>
+
+    <!-- Nav bar -->
     <nav>
         <ul>
-            <div class="navg">
-                <li>
-                    <a href="index.html"><img src="logo.png" alt="Lien vers le haut de page" class="logo"></a>
-                </li>
-            </div>
-            <div class="navd">
-                <li><a href="#ContainerCarte">Carte</a></li>
-                <li><a href="#ContainerGraph">Température</a></li>
-                <li><a href="#Contexte">Projet</a> </li>
-            </div>
+            <li>
+                <a href="index.html"><img src="logo.png" alt="Lien vers le haut de page" class="logo"></a>
+            </li>
+            <li><a href="#ContainerCarte">Carte</a></li>
+            <li><a href="#ContainerGraph">Température</a></li>
+            <li><a href="#Contexte">Projet</a> </li>
         </ul>
     </nav>
+    <!-- Fin Nav bar -->
 
-
+    <!-- Header avec titre principal -->
     <header>
         <h1>LES DÉPARTS DE FEU <br>D'ÉTÉ EN FRANCE ENTRE 2002 ET 2022 </h1>
     </header>
+    <!-- ---- -->
+
 
     <section class="Carte" id="ContainerCarte">
         <h2>Carte des départs de feu en France</h2>
 
+        <!-- Carte mapbox -->
         <div class="ContainerCarte">
 
             <div id="map"></div>
+            <!-- Fin de la carte mapbox -->
+
             <!-- Calendrier -->
             <div class="interaction">
                 <form method="get">
                     <div class="Containerslider">
                         <label class="choixannee" for="date">Choisissez une année entre 2002 et 2022</label>
+                        <!-- Selection de date sur la bar  -->
                         <input id="slider" type="range" min="2002" max="2022" value="2002" step="1">
                         <div class="container_anneeprogress">
                             <p class="anneeprogress">2002</p>
@@ -83,11 +90,14 @@
                             <p class="anneeprogress">2021</p>
                             <p class="anneeprogress">2022</p>
                         </div>
+                        <!-- ---- -->
                     </div>
 
                     <div class="choixdate">
 
+
                         <input type="button" id="précédente" value="Date précédente">
+                        <!-- Selection de la date avec le selecteur  -->
                         <select name="date" id="date">
                             <option value="2002">2002</option>
                             <option value="2003">2003</option>
@@ -111,12 +121,19 @@
                             <option value="2021">2021</option>
                             <option value="2022">2022</option>
                         </select>
+                        <!-- ---- -->
+
+                        <!-- Bouton Pause et Play pour l'animation -->
                         <div class="playandpause">
                             <img src="play.png" alt="Retirer pause" id="Play" style="cursor: pointer; height: 50px; width: 50px;" />
                             <img src="pause.png" alt="Retirer pause" id="Pause" style="cursor: pointer; height: 50px; width: 50px;" />
                         </div>
+                        <!-- ---- -->
+
+                        <!-- Bouton pour aller a la date suivante ou précédente  -->
                         <input type="button" id="submit" value="Choisir cette date">
                         <input type="button" id="suivante" value="Date suivante">
+                        <!-- ---- -->
                     </div>
                 </form>
             </div>
@@ -124,32 +141,46 @@
 
     </section>
 
+    <!-- Section avec les graph -->
     <section class="ContainerGraph">
+        <!-- Titre de la section -->
         <h2 id="ContainerGraph">Comparatif des feux de 2002 à 2022 avec les températures</h2>
+        <!-- Graph de l'histogramme -->
         <div class="graph">
             <div class="histo" id="histogramme">
             </div>
+            <!-- --- -->
+            <!-- Texte explicatif de l'histogramme -->
             <div class="texte">
                 <h3>Évolution des feux par année</h3>
                 <p>Ce graphique représente les départs de feu de forêt chaque année, de 2002 à 2022. On remarque que l'année où il y a eu le plus de départs de feu est durant la période de canicule de 2003, puis succéder par l'année 2022.
                 </p>
             </div>
+            <!-- --- -->
         </div>
+        <!-- --- -->
 
+        <!-- Graph du nuage de point -->
         <div class="graph">
             <div class="ndp" id="nuagepoint"></div>
+            <!-- --- -->
+            <!-- Texte explicatif du nuage de point -->
             <div class="texte">
                 <h3>Moyenne des températures de 2002 à 2022</h3>
                 <p>Ce graphique représente les températures moyennes maximales durant la période de juin jusque septembre de chaque année de 2002 à 2022. Ces cinq dernières année une hausse de ces moyennes ont augmenté, c'est même ce qui semble devenir la
                     norme pour ces prochaines années.</p>
             </div>
+            <!-- --- -->
         </div>
+        <!-- --- -->
     </section>
 
+
+    <!-- Section sur le contexte du projet -->
     <section class="ctxt" id="Contexte">
         <h2>Contexte du projet</h2>
         <div class="contexte">
-            <p class="gauche">
+            <p class="centre">
                 Ceci est un projet réalisé par des étudiants dont le but a été de mettre en oeuvre ce que nous avions vu en réalisant un site demandant d'utiliser des donnés. Nous avons choisi le sujet des feux de forêt en France de ces 20 dernières années afin de faire
                 prendre conscience de l'évolution des cas de feu de fôret ainsi que des températures qui ne cesse d'augmenter. C'est un sujet d'actualité qui nous concerne tous mais dont peu d'entre nous en connaisse réellement l'ampleur.
             </p>
@@ -160,7 +191,9 @@
             </div>
         </div>
     </section>
+    <!-- fin Section sur le contexte du projet -->
 
+    <!-- Footer avec volet déroulant -->
     <footer>
         <div class="volet-invisible volet" id="volet">
             <div class="footer">
@@ -208,6 +241,7 @@
             </div>
         </div>
     </footer>
+    <!-- Fin footer avec volet déroulant -->
 
     <script>
         //Accès au token
