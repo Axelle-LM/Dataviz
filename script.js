@@ -300,6 +300,7 @@ d3.selectAll(".barres")
             .text(d => d.B + " feux" + " en " + d.A)
             .style("fill", "white")
             .style("position", "absolute")
+            .style("font-family", "Montserrat")
             .style("font-size", "0.5em");
     })
     .on("mouseout", function(d) {
@@ -407,6 +408,7 @@ d3.json('temperature.json').then(function(d) {
                 .attr("text-anchor", "middle")
                 .text(d => d.temp_moy + "°C" + " en " + d.annee)
                 .style("position", "absolute")
+                .style("font-family", "Montserrat")
                 .style("fill", "white")
                 .style("font-size", "0.5em");
         })
