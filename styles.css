@@ -30,7 +30,6 @@
         background: transparent;
         color: transparent;
         border: 0;
-        outline: 0;
         z-index: -1;
     }
     
@@ -549,23 +548,18 @@
         height: 25vh;
         overflow: hidden;
         background-color: #000000;
+        opacity: 0.7;
+        transition: 0.5s;
     }
     
     .volet-invisible:hover {
-        cursor: pointer;
-        opacity: 90%;
-        background-color: #575757;
+        opacity: 1;
         transition: 0.5s;
     }
     
     .titre_ml {
         font-size: 1.8em;
         text-decoration: underline;
-    }
-    /* Style du burger menu */
-    
-    .burger {
-        display: none;
     }
     /* Responsive sous les 1250 px */
     
@@ -667,10 +661,7 @@
         .choixdate input {
             font-size: 0.8em;
         }
-        .navg {
-            display: none;
-        }
-        .navd {
+        .liennav {
             display: none;
         }
     }
