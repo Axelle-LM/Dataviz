@@ -1,3 +1,4 @@
+//----------Map crée via mapbox.com-------------------
 //Accès au token
 mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFsaWVkcCIsImEiOiJjbDh4NjBqOWkwMXE3M3dwY292bDNzcDVoIn0.hxFDPbpzjCLJ3ZpIji1SJQ';
 //Initialisation de la map 
@@ -6,17 +7,19 @@ const map = new mapboxgl.Map({
     //Application du style 
     style: 'mapbox://styles/nathaliedp/cla2xdem9002f14pcpyzv0zd3',
     center: [3.483, 46.205], // starting position [lng, lat],
-    zoom: 4.5, // starting zoom
-    // These options control the camera position after animation
+    zoom: 4.5, // Controle du zoom
+    // Position de la camera
     pitch: 46,
     bearing: 20,
 });
 
 
+//Pour le changement de date 
 let datechange = function datechangement() {
     document.getElementById("suivante").click();
 }
 
+//-------------Animation de la carte---------------
 // Fonction pour lancer la lecture
 function play() {
     intervaldate = setInterval(datechange, 2000);
@@ -82,16 +85,24 @@ document.getElementById("date").addEventListener("input", function() {
     document.getElementById("submit").click();
 });
 
+// ---------------- Fin de l'animation
+
+
+
 document.getElementById('submit').addEventListener('click', function() {
 
     document.querySelectorAll('.marker').forEach(el => el.parentNode.removeChild(el));
     let date = document.getElementById('date').value;
+    //On va ici charger ici le contenu du fichier JSON dans une variable data en utilisant fetch Javascipt
     fetch('fire_archive_M-C61_301806.json').then(function(response) {
         response.json().then(function(data) {
 
             function feu(data) {
                 data.forEach(function(f) {
+                    //Si acq_date de notre json correspond au conditions ci dessous alors : 
+                    //On met en condition l'année selectionnée + les mois d'été 
                     if (f.acq_date.substring(0, 4) == date && (f.acq_date.substring(5, 7) == 06 || f.acq_date.substring(5, 7) == 07 || f.acq_date.substring(5, 7) == 08 || f.acq_date.substring(5, 7) == 09)) {
+                        //creation des markeurs ( les feux )
                         let el = document.createElement('div')
                         el.className = 'marker';
                         el.style.width = '3px';
@@ -99,6 +110,7 @@ document.getElementById('submit').addEventListener('click', function() {
 
                         new mapboxgl.Marker(el)
                             .setLngLat([f.longitude, f.latitude])
+                            //On les rajoute a la map
                             .addTo(map);
                     }
                 });
@@ -129,7 +141,7 @@ document.getElementById('submit').addEventListener('click', function() {
     })
 })
 
-
+//Nombre de feu par année 
 let nbfeuannee = [{
     A: 2002,
     B: 1426
@@ -195,8 +207,11 @@ let nbfeuannee = [{
     B: 2208
 }];
 
+//-----------------Graph Histogramme---------------------
 let scaleY = 1 / 30;
 
+
+//Creation des axes pour l'histogramme
 const axeG =
     d3.axisLeft(d3.scaleLinear()
         .domain([0, 3000]) // la plage de valeurs possibles 
@@ -232,6 +247,8 @@ svg.append("g")
 
 let w = 150 / nbfeuannee.length;
 
+
+// Création du linear gradient appliqué sur les barres 
 let areaGradient = svg.append("defs")
     .append("linearGradient")
     .attr("id", "areaGradient")
@@ -267,7 +284,7 @@ d3.selectAll(".barres")
     .style("height", d => d.B * scaleY)
     .style("y", d => -d.B * scaleY)
     .style("x", "4")
-    .style("fill", "url(#areaGradient)")
+    .style("fill", "url(#areaGradient)") //On applique le linear gradiant qu'on a crée précédamment 
     .style("stroke", "none");
 
 d3.selectAll(".barres")
@@ -293,6 +310,12 @@ d3.selectAll(".barres")
             .remove();
     });
 
+
+// -------------------Fin de l'histogramme --------------------------
+
+//-------------Création du graph nuage de point relié par les traits--------------------
+
+//On utilise ici les données du json des moyennes de températures de 2002 à 2022
 d3.json('temperature.json').then(function(d) {
 
     let scaley = d3.scaleLinear()
@@ -318,25 +341,31 @@ d3.json('temperature.json').then(function(d) {
 
     console.log("test")
 
-    var svgnuage = d3.select("#nuagepoint")
+    let svgnuage = d3.select("#nuagepoint")
+
+    svgnuage
         .append("svg")
+        .attr("class", "svgndp")
         .attr("width", 100 + "%")
         .attr("height", 90 + "%")
         .attr("viewBox", "-30 -5 200 130")
 
-    svgnuage.append("g")
+    d3.select(".svgndp")
+        .append("g")
         .call(axeY)
         .style("color", "white")
         .style("font-size", "0.3em");
 
 
-    svgnuage.append("g")
+    d3.select(".svgndp")
+        .append("g")
         .call(axeX)
         .attr("transform", "translate(0, 100)")
         .style("color", "white")
         .style("font-size", "0.3em");
 
-    svgnuage.append("path")
+    d3.select(".svgndp")
+        .append("path")
         .datum(d)
         .attr("fill", "none")
         .style("stroke", "url(#areaGradient)")
@@ -350,45 +379,62 @@ d3.json('temperature.json').then(function(d) {
             })
         )
 
-    svgnuage.selectAll(".point")
+    d3.select(".svgndp")
+        .selectAll(".point")
         .data(d)
         .enter()
+        .append("g")
+        .attr("class", "point");
+
+
+    d3.selectAll(".point")
         .append("circle")
+        .attr("class", "rond")
         .attr("width", "100px")
         .attr("height", "100px")
         .style("fill", "orange")
         .style("stroke", "none")
-        .attr("class", "point")
         .attr("r", 2)
-        .attr("transform", (d, i) => `translate(${scalex (d.annee)}, ${scaley (d.temp_moy)})`)
+        .attr("transform", (d, i) => `translate(${scalex (d.annee)}, ${scaley (d.temp_moy)})`);
+
+    d3.selectAll(".point")
         .on("mouseover", function(d) {
-            d3.selectAll(".point")
-                .style("opacity", 0.3);
             d3.select(this)
-                .style("opacity", 1)
-                .style("r", 5)
                 .append("text")
+                .attr("y", 122)
+                .attr("x", 70)
                 .attr("class", "labelpoint")
-                .attr("y", 22)
                 .attr("text-anchor", "middle")
                 .text(d => d.temp_moy + "°C" + " en " + d.annee)
-                .style("fill", "white")
                 .style("position", "absolute")
+                .style("fill", "white")
                 .style("font-size", "0.5em");
         })
         .on("mouseout", function(d) {
-            d3.selectAll(".point")
-                .style("opacity", 1);
             d3.select(this)
-                .style("r", 2)
                 .select(".labelpoint")
                 .remove();
         });
 
+    d3.selectAll(".rond")
+        .on("mouseover", function(d) {
+            d3.selectAll(".rond")
+                .style("opacity", 0.3);
+            d3.select(this)
+                .style("opacity", 1)
+                .attr("r", 5)
+                .on("mouseout", function(d) {
+                    d3.selectAll(".rond")
+                        .style("opacity", 1);
+                    d3.select(this)
+                        .attr("r", 2)
+                });
+        })
 });
 
-// LES MENTIONS LEGALES
+//------------- Fin du graph nuage de point --------------------
 
+// LES MENTIONS LEGALES
 
 document.querySelector('.volet-invisible').addEventListener('click', function(click) {
     //Afficher le mot "click" dans la console quand on a cliqué sur l'élément ayant pour classe volet-invisible
