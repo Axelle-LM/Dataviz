@@ -22,7 +22,7 @@ let datechange = function datechangement() {
 //-------------Animation de la carte---------------
 // Fonction pour lancer la lecture
 function play() {
-    intervaldate = setInterval(datechange, 2000);
+    intervaldate = setInterval(datechange, 1200);
 }
 
 // Fonction pour arrêter la lecture
