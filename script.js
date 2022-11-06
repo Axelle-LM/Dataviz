@@ -45,6 +45,30 @@ document.getElementById("Pause").addEventListener("click", function() {
     pause();
 });
 
+// Quand je clique sur submit, on ajoute dans la div avec l'id pointdelete, l'image pointdelete.png et la div passe en display block
+document.getElementById("submit").addEventListener("click", function() {
+    document.getElementById("pointdelete").innerHTML = "<img src='pointdelete.png' alt='pointdelete'>";
+    document.getElementById("pointdelete").style.display = "block";
+});
+
+// Quand je clique sur submit, l'id attention devient visible
+document.getElementById("submit").addEventListener("click", function() {
+    document.getElementById("attention").style.display = "block";
+});
+
+// Il disparait ensuite quand je supprime les points
+document.getElementById("pointdelete").addEventListener("click", function() {
+    document.getElementById("attention").style.display = "none";
+});
+
+
+// Quand je clique sur l'id pointdelete, il devient en display none et je supprime tous les markers
+document.getElementById("pointdelete").addEventListener("click", function() {
+    document.getElementById("pointdelete").style.display = "none";
+    document.querySelectorAll('.marker').forEach(el => el.parentNode.removeChild(el));
+});
+
+
 // Quand on arrive à 2022, on repasse à 2002
 document.getElementById("suivante").addEventListener("click", function() {
     if (document.getElementById("date").value == 2022) {
@@ -227,6 +251,7 @@ const axeB =
         .range([0, 150])) // les coordonnées du début et de fin de l'axe
     .ticks(21)
     .tickFormat(d3.format('d'));
+
 
 //Creation du graphique
 let svg = d3.select("#histogramme")
