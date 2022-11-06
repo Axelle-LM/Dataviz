@@ -47,7 +47,7 @@ document.getElementById("Pause").addEventListener("click", function() {
 
 // Quand je clique sur submit, on ajoute dans la div avec l'id pointdelete, l'image pointdelete.png et la div passe en display block
 document.getElementById("submit").addEventListener("click", function() {
-    document.getElementById("pointdelete").innerHTML = "<img src='pointdelete.png' alt='pointdelete'>";
+    document.getElementById("pointdelete").innerHTML = "<img src='Pointdelete.png' alt='Supprimer les points sur la carte'>";
     document.getElementById("pointdelete").style.display = "block";
 });
 
