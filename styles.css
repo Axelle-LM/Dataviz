@@ -323,8 +323,13 @@ header a {
     font-family: 'Jura', sans-serif;
     width: 100%;
     text-align: center;
+    line-height: 1.2;
     color: white;
     text-shadow: 1px 2px 4px black;
+}
+
+.ContainerGraph .texte p {
+    text-align: justify;
 }
 
 .marker {
@@ -494,7 +499,7 @@ input[type=range]:focus::-ms-fill-upper {
 .contexte .centre {
     font-family: 'Jura', sans-serif;
     color: white;
-    text-align: center;
+    text-align: justify;
     font-size: 1.2em;
     width: 60%;
 }
@@ -557,6 +562,18 @@ footer a {
 footer a:visited {
     color: rgb(233, 230, 230);
     text-decoration: underline;
+}
+
+footer .ml {
+    text-align: justify;
+}
+
+footer .ml .titre_ml {
+    text-align: center;
+}
+
+footer .ml .prj {
+    text-align: center;
 }
 
 .volet-visible {
