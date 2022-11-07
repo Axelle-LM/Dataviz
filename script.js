@@ -1,3 +1,5 @@
+AOS.init();
+
 //----------Map crée via mapbox.com-------------------
 //Accès au token
 mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFsaWVkcCIsImEiOiJjbDh4NjBqOWkwMXE3M3dwY292bDNzcDVoIn0.hxFDPbpzjCLJ3ZpIji1SJQ';
@@ -309,8 +311,10 @@ d3.select("svg")
 
 d3.selectAll(".barres")
     .append("rect")
-    .style("width", w - 1)
-    .style("height", d => d.B * scaleY)
+
+d3.selectAll(".barres rect")
+    .style("width", (w - 1) + "px")
+    .style("height", d => (d.B * scaleY) + "px")
     .style("y", d => -d.B * scaleY)
     .style("x", "4")
     .style("fill", "url(#areaGradient)") //On applique le linear gradiant qu'on a crée précédamment 

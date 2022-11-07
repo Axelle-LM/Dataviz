@@ -16,6 +16,10 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
 
+    <!-- Lien vers la librairie animation on scroll AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +49,10 @@
 
     <!-- Header avec titre principal -->
     <header>
-        <h1>LES DÉPARTS DE FEU <br>DURANT L'ÉTÉ EN FRANCE DE 2002 À 2022 </h1>
+        <div data-aos="fade-down" data-aos-duration="2000">
+            <h1> LES DÉPARTS DE FEU <br> DURANT L'ÉTÉ EN FRANCE DE 2002 À 2022
+            </h1>
+        </div>
         <a href="#ContainerCarte"><img src="arrow.png" alt="Démarrer la navigation" class="arrow"></a>
     </header>
     <!-- ---- -->
@@ -158,7 +165,7 @@
             </div>
             <!-- --- -->
             <!-- Texte explicatif de l'histogramme -->
-            <div class="texte">
+            <div class="texte" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">
                 <h3>Évolution des départs de feux de 2002 à 2022</h3>
                 <p>Ce graphique représente les départs de feu de forêt chaque année, de 2002 à 2022. On remarque que l'année où il y a eu le plus de départs de feu est durant la période de canicule de 2003, puis succédée par l'année 2022, ce chiffre tend
                     vers le haut d'année en année et on peut observer un lien avec la hausse de température ci-dessous.
@@ -173,7 +180,7 @@
             <div class="ndp" id="nuagepoint"></div>
             <!-- --- -->
             <!-- Texte explicatif du nuage de point -->
-            <div class="texte">
+            <div class="texte" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">
                 <h3>Moyenne des températures de 2002 à 2022</h3>
                 <p>Ce graphique représente les températures moyennes durant la période de juin à septembre de chaque année allant de 2002 à 2022. On peut constater que, comme les feux (sans compter la grosse canicule de 2003), ces cinq dernières années,
                     la température connaît une hausse relativement rapide, cette hausse semble bien partie pour continuer sur les prochaines années.</p>
@@ -185,7 +192,7 @@
 
 
     <!-- Section sur le contexte du projet -->
-    <section class="ctxt" id="Contexte">
+    <section class="ctxt" id="Contexte" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1300">
         <h2>Contexte du projet</h2>
         <div class="contexte">
             <p class="centre">
